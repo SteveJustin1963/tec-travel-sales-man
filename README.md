@@ -1,7 +1,9 @@
 # tec-travel-sales-man
 20 cities
 
+The problem of deciding what path to take from home to work is an example of the Traveling Salesperson Problem, and the number of possible solutions grows as a factorial, n! = n*(n-1)*(n-2)...*1, where n is the number of stops that must be taken. As the value of n increases, the total number of possible solutions calculated by n! increases rapidly. 
 
+20! = 2432902008176640000 , 10E18 power!
 
 
 To fix and improve the provided assembly code, several issues and optimizations need to be addressed. The original code has some logical and syntactical issues that prevent it from working correctly for solving a traveling salesman problem (TSP) efficiently. Here are the improvements:
@@ -85,3 +87,8 @@ Key Changes:
 - **Output Mechanism**: Mentioned the need for outputting the shortest tour and distance, though specifics will depend on your environment.
 
 This code needs further refinement, particularly in implementing the `CALCULATE_TOTAL_DISTANCE` function, initializing arrays correctly, and ensuring the permute logic correctly iterates through all possible tours while updating the shortest distance and tour appropriately. Additionally, ensure the `cities` array is properly populated with distance data before the main logic begins.
+
+
+## Ref
+- https://algorithms.discrete.ma.tum.de/graph-games/tsp-game/index_en.html
+- 
