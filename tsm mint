@@ -1,0 +1,60 @@
+60 g!  // GRID-SIZE
+20 n!  // NUM-POINTS
+
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] p!  // points array
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] v!  // visited array
+
+:R g 1- ? ;  // RANDOM-GRID: Generate random grid coordinate
+
+:I  // INIT-POINTS: Initialize random points
+  n (
+    R /i 2* p + !    // Store x-coordinate
+    R /i 2* 1+ p + ! // Store y-coordinate
+  )
+;
+
+:V  // INIT-VISITED: Initialize visited array to 0
+  n ( 0 /i v + ! )
+;
+
+:A " 0 < ( ~ ) ;  // ABS: Absolute value
+
+:D  // DISTANCE: Manhattan distance
+  - A $ - A +
+;
+
+:N  // NEAREST: Find nearest unvisited point
+  x! y!
+  -1 m! 9999 d!
+  n (
+    /i v + ? 0 = (
+      /i 2* p + ? /i 2* 1+ p + ?  // Load x, y of point
+      x y D
+      " d ? < (
+        d! /i m!
+      ) '
+    )
+  )
+  m ? d ?
+;
+
+:F  // FIND-SHORTEST-PATH
+  0 0  // Start from point 0
+  n 1 - (
+    /i 2* p + ? /i 2* 1+ p + ?  // Get x, y for current point
+    N $ v + !  // Find nearest unvisited point and mark as visited
+  )
+;
+
+:P  // PRINT-MAP
+  n (
+    /i 2* p + ? /i 2* 1+ p + ?
+    `Point: ` /i . ` -> X: ` . ` Y: ` . /N
+  )
+;
+
+:M  // MAIN
+  I V F P
+;
+
+M  // Run the main function
